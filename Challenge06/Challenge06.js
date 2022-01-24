@@ -18,7 +18,6 @@ const findMax = (arr) => {
             max = arr[i];
         }
     }
-    console.log(max);
     return max;
 }
 
@@ -36,9 +35,11 @@ const sumNums = (arr) => {
     // write your code here
     sum = 0;
     for (let i = 0; i < arr.length; i++) {
-        if (Number.isInteger(arr[i])) {
-            sum += arr[i];
-        }
+        if (typeof arr[i] == "string" ) {
+           continue
+            
+        } 
+        sum += arr[i];
     }
     return sum;
 }
