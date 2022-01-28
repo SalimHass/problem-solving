@@ -104,12 +104,24 @@ const courses = [
 ];
 
 const getInfo = (arr) => {
-  let coursesName = [];
-  let studentsName = [];
-  // write your code here
+    let coursesName = [];
+    let studentsName = [];
+    // write your code here
+    let newObj = getCourseName(arr);
+    coursesName.push(...newObj.coursesName);//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+    studentsName.push(...newObj.studentsName);
 
-  return { coursesName, studentsName };
+    return { coursesName, studentsName };
 };
+function getCourseName(arr) {
+    let coursesName = [];
+    let studentsName = [];
+    for (const item of arr) {
+        coursesName.push(item.course);
+        studentsName.push(...item.Students);
+    }
+    return { coursesName, studentsName };
+}
 
 //  ------------------------------------------------------------------------------------------------------
 // Challenge 04
@@ -130,8 +142,18 @@ const getInfo = (arr) => {
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-  // write your code here
-
+    // write your code here
+    let newArr = [];
+    for (const student of arr) {
+        for (const course of courses) {
+            if (course.Students.includes(student)) {
+                let obj = { "Student": student, "course": course.course };
+                newArr.push(obj);
+                break;
+            }
+        }
+    }
+    return newArr;
 };
 
 module.exports = {
